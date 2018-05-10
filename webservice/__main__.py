@@ -19,6 +19,19 @@ async def issue_opened_event(event, gh, *args, **kwargs):
     message = f"Thanks for the report @{author}! I will look into it ASAP! (I'm a bot)."
     await gh.post(url, data={"body": message})
 
+@router.register("pull_request", action="opened")
+async def pull_request_opened_event(event, gh, *args, **kwargs):
+    """
+    Auto comment on new pull requests
+    """
+    url = event.data["pull_request"]["comments_url"]
+    author = event.data["issue"]["user"]["login"]
+
+    message = f"Wow that is horible code."
+    await gh.post(url, data={"body": message})
+
+
+
 async def main(request):
     body = await request.read()
 
