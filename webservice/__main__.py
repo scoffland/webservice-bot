@@ -25,7 +25,7 @@ async def pull_request_opened_event(event, gh, *args, **kwargs):
     Auto comment on new pull requests
     """
     url = event.data["pull_request"]["comments_url"]
-    author = event.data["issue"]["user"]["login"]
+    #author = event.data["issue"]["user"]["login"]
 
     message = f"Wow that is horible code."
     await gh.post(url, data={"body": message})
